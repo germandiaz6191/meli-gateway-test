@@ -42,7 +42,7 @@ public class SecurityConfig {
 		            	.authorizeExchange()
 		            .and().requestCache().requestCache(NoOpServerRequestCache.getInstance())//Elimina autenticaci{on cache
 		            .and().authorizeExchange()
-		            .pathMatchers("/asu/**").authenticated()
+		            .pathMatchers("/api/**").authenticated()
 		            .pathMatchers(HttpMethod.OPTIONS).permitAll()
 		            .pathMatchers(HttpMethod.POST).permitAll()		            
 		            .anyExchange().permitAll()
