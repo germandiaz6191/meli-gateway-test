@@ -22,7 +22,7 @@ public class CORSConfiguration implements WebFluxConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
                 .allowCredentials(false)
-                .allowedOrigins("*")
+                .allowedOrigins("http://ec2-3-88-62-17.compute-1.amazonaws.com")
                 .allowedHeaders("*")
                 .allowedMethods("*")
                 .maxAge(180000l)
@@ -36,7 +36,7 @@ public class CORSConfiguration implements WebFluxConfigurer {
         config.setAllowCredentials(false);
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
-        config.addAllowedOrigin("*");
+        config.addAllowedOrigin("http://ec2-3-88-62-17.compute-1.amazonaws.com");
         config.setMaxAge(180000l);
         config.addExposedHeader(HttpHeaders.SET_COOKIE);
         source.registerCorsConfiguration("/**", config);
