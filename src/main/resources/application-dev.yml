@@ -1,0 +1,39 @@
+server:
+  port: 2020
+spring:
+  security:
+        encode:
+            secret: m3l1pru3b4t3cn1c4
+            expiration:
+                    time: 86400000
+  jmx:
+    enabled: false
+  cloud:
+    gateway:
+      default-filters:
+      - AddResponseHeader=X-Response-Default-Foo, Default-Bar
+
+      routes:
+       # =====================================
+      - id: favorites
+        uri: http://localhost:8081/
+        predicates:
+        - Path=/api/v1/favorites/**
+        - Method=POST,GET
+         # =====================================
+      
+      - id: coupon
+        uri: http://localhost:8080/
+        predicates:
+        - Path=/api/v1/coupon/**
+        - Method=POST,GET
+
+logging:
+  level:
+    org.springframework.cloud.gateway: INFO
+    org.springframework.http.server.reactive: INFO
+    org.springframework.web.reactive: INFO
+    reactor.ipc.netty: INFO
+    reactor.netty: INFO
+
+management.endpoints.web.exposure.include: '*'

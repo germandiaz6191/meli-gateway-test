@@ -1,0 +1,21 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-version:
+      java: corretto8
+  build:
+    commands:
+      - echo Clean started on `date`
+      - chmod +x ./gradlew
+      - ./gradlew bootJar
+  post_build:
+    commands:
+      - echo Build completed
+artifacts:
+  files:
+    - build/libs/*.jar
+    - scripts/*.sh
+    - scripts/*.service
+    - appspec.yml
+  discard-paths: yes

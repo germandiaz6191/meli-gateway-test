@@ -1,0 +1,42 @@
+server:
+  port: 8080
+spring:
+  security:
+        encode:
+            secret: ${secretjwt}
+            expiration:
+                    time: ${expirationtime}
+  jmx:
+    enabled: false
+  cloud:
+    gateway:
+      httpclient:
+          connect-timeout: 1200
+          response-timeout: 1200s
+      default-filters:
+      - AddResponseHeader=X-Response-Default-Foo, Default-Bar
+
+      routes:
+       # =====================================
+      - id: favorites
+        uri: http://${gtrule1}
+        predicates:
+        - Path=/api/v1/favorites/**
+        - Method=POST,GET
+         # =====================================
+      
+      - id: coupon
+        uri: http://${gtrule2}
+        predicates:
+        - Path=/api/v1/coupon/**
+        - Method=POST,GET
+
+logging:
+  level:
+    org.springframework.cloud.gateway: INFO
+    org.springframework.http.server.reactive: INFO
+    org.springframework.web.reactive: INFO
+    reactor.ipc.netty: INFO
+    reactor.netty: INFO
+
+management.endpoints.web.exposure.include: '*'
