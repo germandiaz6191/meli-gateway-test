@@ -26,7 +26,7 @@ public class CORSConfiguration implements WebFluxConfigurer {
                 .allowedHeaders("*")
                 .allowedMethods("*")
                 .maxAge(180000l)
-                .exposedHeaders(HttpHeaders.SET_COOKIE); 
+                .exposedHeaders(HttpHeaders.SET_COOKIE);
     }
 
     @Bean
