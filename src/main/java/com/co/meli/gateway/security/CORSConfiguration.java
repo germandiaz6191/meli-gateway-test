@@ -21,7 +21,7 @@ public class CORSConfiguration implements WebFluxConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowCredentials(true)
+                .allowCredentials(false)
                 .allowedOrigins("*")
                 .allowedHeaders("*")
                 .allowedMethods("*")
@@ -33,7 +33,7 @@ public class CORSConfiguration implements WebFluxConfigurer {
     CorsConfigurationSource corsConfigurationSource() {
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration().applyPermitDefaultValues();
-        config.setAllowCredentials(true);
+        config.setAllowCredentials(false);
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
         config.addAllowedOrigin("*");
